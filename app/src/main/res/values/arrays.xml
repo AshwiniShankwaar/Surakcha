@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="id_activityScreenTitle">
+        <item></item>
+        <item>DashBoard</item>
+        <item>Profile</item>
+        <item>Saved Messages</item>
+        <item>Saved Contacts</item>
+        <item>Settings</item>
+        <item>Share</item>
+    </string-array>
+    <string-array name="id_activityScreenIcons" >
+        <item>@drawable/close</item>
+        <item>@drawable/home</item>
+        <item>@drawable/profile</item>
+        <item>@drawable/savedmessage</item>
+        <item>@drawable/savedcontact</item>
+        <item>@drawable/setting</item>
+        <item>@drawable/share</item>
+    </string-array>
+</resources>
