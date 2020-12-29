@@ -17,4 +17,9 @@ public class Share extends Fragment {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.share_fragment,container,false);
         return root;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Share");
+    }
 }

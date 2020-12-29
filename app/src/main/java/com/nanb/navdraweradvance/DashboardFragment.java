@@ -49,6 +49,7 @@ public class DashboardFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Dashboard");
         lat = view.findViewById(R.id.latitude);
         lon = view.findViewById(R.id.longitude);
         add = view.findViewById(R.id.address);

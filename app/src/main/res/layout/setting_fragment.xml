@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -54,6 +53,7 @@
         android:id="@+id/line"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
+        android:visibility="gone"
         android:layout_below="@+id/Description"
         android:background="#c0c0c0"/>
     <LinearLayout
@@ -62,33 +62,45 @@
         android:orientation="vertical"
         android:layout_below="@+id/line"
         android:id="@+id/menu"
-        android:padding="10dp">
-        <LinearLayout
+        android:padding="15dp">
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/contactselect"
-            android:background="@drawable/msg_recycler_view_item_background"
-            android:padding="10dp">
+            app:cardElevation="5dp"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="10dp"
+            >
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Contacts"
-                    android:layout_alignParentLeft="true"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:orientation="horizontal"
+                    android:id="@+id/contactselect"
+                    android:background="@drawable/msg_recycler_view_item_background"
+                    android:padding="10dp">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Contacts"
+                            android:layout_alignParentLeft="true"
+                            android:textStyle="bold"
+                            android:textSize="18dp"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_baseline_chevron_right_24" />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_baseline_chevron_right_24" />
+                    </RelativeLayout>
+
+                </LinearLayout>
             </RelativeLayout>
-
-        </LinearLayout>
+        </androidx.cardview.widget.CardView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -115,12 +127,21 @@
             </RelativeLayout>
 
         </LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="5dp"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="10dp"
+            >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/locationService"
-            android:layout_marginTop="5dp"
             android:background="@drawable/msg_recycler_view_item_background"
             android:padding="10dp">
             <RelativeLayout
@@ -143,12 +164,23 @@
                     />
             </RelativeLayout>
         </LinearLayout>
+        </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="5dp"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="10dp"
+            >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/termandcondtion"
-            android:layout_marginTop="5dp"
             android:background="@drawable/msg_recycler_view_item_background"
             android:padding="10dp">
             <RelativeLayout
@@ -170,12 +202,23 @@
                     android:src="@drawable/ic_baseline_chevron_right_24" />
             </RelativeLayout>
         </LinearLayout>
+        </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="5dp"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="10dp"
+            >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/privatepolicy"
-            android:layout_marginTop="5dp"
             android:background="@drawable/msg_recycler_view_item_background"
             android:padding="10dp">
 
@@ -197,12 +240,23 @@
                     android:src="@drawable/ic_baseline_chevron_right_24" />
             </RelativeLayout>
         </LinearLayout>
+        </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="5dp"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="10dp"
+            >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/contactus"
-            android:layout_marginTop="5dp"
             android:background="@drawable/msg_recycler_view_item_background"
             android:padding="10dp">
             <RelativeLayout
@@ -222,8 +276,9 @@
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_baseline_chevron_right_24" />
             </RelativeLayout>
-
         </LinearLayout>
+        </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
 
     </LinearLayout>

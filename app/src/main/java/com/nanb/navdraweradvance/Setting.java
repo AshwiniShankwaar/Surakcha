@@ -37,6 +37,7 @@ public class Setting extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Setting");
         contact = (LinearLayout) view.findViewById(R.id.contactselect);
         selectmessage = (LinearLayout) view.findViewById(R.id.selectmessage);
         locationserviceSwitcher = (Switch) view.findViewById(R.id.switcher);

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,9 +54,9 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         holder.bind(position);
         //Toast.makeText(context,String.valueOf(selectedmessage) + "pass",Toast.LENGTH_SHORT).show();
         if(msgmodel.getId() == selectedmessage){
-            holder.itemView.setBackground(ContextCompat.getDrawable(context,R.drawable.seleceted_item));
+            holder.item.setBackground(ContextCompat.getDrawable(context,R.drawable.seleceted_item));
         }else{
-            holder. itemView.setBackground(ContextCompat.getDrawable(context,R.drawable.msg_recycler_view_item_background));
+            holder. item.setBackground(ContextCompat.getDrawable(context,R.drawable.msg_recycler_view_item_background));
         }
     }
 
@@ -66,10 +67,12 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView title,msg;
+        LinearLayout item;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
             msg = itemView.findViewById(R.id.message);
+            item = itemView.findViewById(R.id.item);
         }
         void bind(int postion){
             msgmodel msgmodel = msgdata.get(postion);

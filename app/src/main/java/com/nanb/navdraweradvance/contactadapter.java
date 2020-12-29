@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -65,16 +66,18 @@ public class contactadapter extends RecyclerView.Adapter<contactadapter.ViewHold
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView name,phonenbr;
+        LinearLayout item;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.title);
             phonenbr = itemView.findViewById(R.id.message);
+            item = itemView.findViewById(R.id.item);
         }
         void bind(contactmodel contactmodel){
            if(phonenumber.contains(contactmodel.getPhoneNumber())){
-               itemView.setBackground(ContextCompat.getDrawable(context,R.drawable.seleceted_item));
+               item.setBackground(ContextCompat.getDrawable(context,R.drawable.seleceted_item));
            }else{
-               itemView.setBackground(ContextCompat.getDrawable(context,R.drawable.msg_recycler_view_item_background));
+               item.setBackground(ContextCompat.getDrawable(context,R.drawable.msg_recycler_view_item_background));
            }
 
            itemView.setOnClickListener(new View.OnClickListener() {

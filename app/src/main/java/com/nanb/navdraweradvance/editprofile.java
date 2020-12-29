@@ -54,6 +54,7 @@ public class editprofile extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Edit profile");
         implementationmethod(view);
         databasehelper = new databasehelper(getActivity().getApplicationContext(),"Surakcha.db");
        File dpfile = new File(getActivity().getFilesDir().getPath()+"/profiledp.jpg");
