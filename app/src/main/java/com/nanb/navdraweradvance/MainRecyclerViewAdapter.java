@@ -1,6 +1,7 @@
 package com.nanb.navdraweradvance;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,11 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     List<msgmodel> msgdata;
     Context context;
     int lastpostion = -1;
-    public MainRecyclerViewAdapter(List<msgmodel> msgdata, Context context) {
+    int selectedmessage = 0;
+    public MainRecyclerViewAdapter(List<msgmodel> msgdata, Context context,int selectedmessage) {
         this.msgdata = msgdata;
         this.context = context;
+        this.selectedmessage = selectedmessage;
     }
 
     @NonNull
@@ -48,7 +51,12 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         holder.title.setText(msgmodel.getTitle());
         holder.msg.setText(msgmodel.getMsg());
         holder.bind(position);
-
+        //Toast.makeText(context,String.valueOf(selectedmessage) + "pass",Toast.LENGTH_SHORT).show();
+        if(msgmodel.getId() == selectedmessage){
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(context,R.color.purple_200));
+        }else{
+            holder. itemView.setBackground(ContextCompat.getDrawable(context,R.drawable.msg_recycler_view_item_background));
+        }
     }
 
     @Override
@@ -68,16 +76,18 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    itemView.setBackgroundColor(ContextCompat.getColor(context,R.color.purple_200));
+                    selectedmessage = msgmodel.getId();
+                 //Toast.makeText(context,String.valueOf(selectedmessage),Toast.LENGTH_SHORT).show();
                     databasehelper databasehelper = new databasehelper(context,"Surakcha.db");
-                   int locationservice = databasehelper.getsettingdata().get(0).getLocationservice();
+                    int locationservice = databasehelper.getsettingdata().get(0).getLocationservice();
                     boolean update = databasehelper.updatesettingdata(msgmodel.getId(),locationservice);
                     if(update){
                         Toast.makeText(context,"message selected",Toast.LENGTH_SHORT).show();
                     }
+                 notifyDataSetChanged();
                 }
             });
+
         }
     }
     public boolean deletedata(int postion){
@@ -90,4 +100,5 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
             return false;
         }
     }
+
 }

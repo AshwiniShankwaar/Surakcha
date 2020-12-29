@@ -48,11 +48,12 @@ public class SavedMessage extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         create = view.findViewById(R.id.createmsg);
-        savedmessage = view.findViewById(R.id.savedmessage);
+
         recyclerView = (RecyclerView) view.findViewById(R.id.messagedata);
         databasehelper = new databasehelper(getActivity().getApplicationContext(),"Surakcha.db");
         List<msgmodel> data = databasehelper.getmsgdata();
-        adapter = new MainRecyclerViewAdapter(data,getActivity().getApplicationContext());
+        int selectedmessage = databasehelper.getsettingdata().get(0).getMsgid();
+        adapter = new MainRecyclerViewAdapter(data,getActivity().getApplicationContext(),selectedmessage);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         recyclerView.setAdapter(adapter);
@@ -64,12 +65,7 @@ public class SavedMessage extends Fragment {
                 showDlertbox(view);
             }
         });
-        savedmessage.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                showsavedmesssage(v);
-            }
-        });
+
     }
 
     private void showsavedmesssage(View view) {

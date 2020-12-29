@@ -74,7 +74,7 @@ public class contactadapter extends RecyclerView.Adapter<contactadapter.ViewHold
            if(phonenumber.contains(contactmodel.getPhoneNumber())){
                itemView.setBackgroundColor(ContextCompat.getColor(context,R.color.purple_200));
            }else{
-               itemView.setBackgroundColor(ContextCompat.getColor(context,R.color.design_default_color_background));
+               itemView.setBackground(ContextCompat.getDrawable(context,R.drawable.msg_recycler_view_item_background));
            }
 
            itemView.setOnClickListener(new View.OnClickListener() {

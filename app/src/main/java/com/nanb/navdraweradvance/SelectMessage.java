@@ -27,7 +27,8 @@ public class SelectMessage extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.messagedata);
         databasehelper = new databasehelper(getActivity().getApplicationContext(),"Surakcha.db");
         List<msgmodel> data = databasehelper.getmsgdata();
-        adapter = new MainRecyclerViewAdapter(data,getActivity().getApplicationContext());
+        int selectedmessage = databasehelper.getsettingdata().get(0).getMsgid();
+        adapter = new MainRecyclerViewAdapter(data,getActivity().getApplicationContext(),selectedmessage);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         recyclerView.setAdapter(adapter);
