@@ -68,6 +68,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/contactselect"
+            android:background="@drawable/msg_recycler_view_item_background"
             android:padding="10dp">
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -119,6 +120,8 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:id="@+id/locationService"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/msg_recycler_view_item_background"
             android:padding="10dp">
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -145,17 +148,20 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/termandcondtion"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/msg_recycler_view_item_background"
             android:padding="10dp">
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Term\'s And Condition"
                     android:layout_alignParentLeft="true"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:text="Term\'s And Condition"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -169,6 +175,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/privatepolicy"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/msg_recycler_view_item_background"
             android:padding="10dp">
 
             <RelativeLayout
@@ -194,6 +202,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/contactus"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/msg_recycler_view_item_background"
             android:padding="10dp">
             <RelativeLayout
                 android:layout_width="wrap_content"

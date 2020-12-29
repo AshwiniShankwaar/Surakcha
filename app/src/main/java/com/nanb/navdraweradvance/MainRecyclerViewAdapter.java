@@ -53,7 +53,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         holder.bind(position);
         //Toast.makeText(context,String.valueOf(selectedmessage) + "pass",Toast.LENGTH_SHORT).show();
         if(msgmodel.getId() == selectedmessage){
-            holder.itemView.setBackgroundColor(ContextCompat.getColor(context,R.color.purple_200));
+            holder.itemView.setBackground(ContextCompat.getDrawable(context,R.drawable.seleceted_item));
         }else{
             holder. itemView.setBackground(ContextCompat.getDrawable(context,R.drawable.msg_recycler_view_item_background));
         }
@@ -94,6 +94,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         msgmodel msgmodel = msgdata.get(postion);
         databasehelper databasehelper = new databasehelper(context,"Surakcha.db");
         boolean delet = databasehelper.deleteone(msgmodel);
+        notifyItemRemoved(postion);
         if(delet){
             return true;
         }else{

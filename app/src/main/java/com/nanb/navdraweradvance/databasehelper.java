@@ -102,6 +102,7 @@ public class databasehelper extends SQLiteOpenHelper {
         }
     }
 
+
     public String addprofile(String name,String email,String phone,String permanentaddress,String currentaddress){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
