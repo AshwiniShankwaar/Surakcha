@@ -5,6 +5,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,7 @@ import androidx.fragment.app.FragmentTransaction;
 public class Setting extends Fragment {
     LinearLayout contact,selectmessage,term,policy,contactus;
     Switch locationserviceSwitcher;
-    MainActivity mainActivity = new MainActivity();
+    Main_launcer main_launcer = new Main_launcer();
     databasehelper databasehelper;
     @Nullable
     @Override
@@ -37,10 +38,11 @@ public class Setting extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Setting");
+        ((Main_launcer) getActivity()).getSupportActionBar().setTitle("Setting");
         contact = (LinearLayout) view.findViewById(R.id.contactselect);
         selectmessage = (LinearLayout) view.findViewById(R.id.selectmessage);
         locationserviceSwitcher = (Switch) view.findViewById(R.id.switcher);
+        contactus = (LinearLayout) view.findViewById(R.id.contactus);
         databasehelper = new databasehelper(getActivity().getApplicationContext(),"Surakcha.db");
         if(islocationServiceAvailable()){
             locationserviceSwitcher.setChecked(true);
@@ -69,7 +71,7 @@ public class Setting extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-                        ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.ACCESS_FINE_LOCATION},mainActivity.Request_code);
+                        ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.ACCESS_FINE_LOCATION},main_launcer.Request_code);
                     }else{
                         startLocationService();
                         int messageid = databasehelper.getsettingdata().get(0).getMsgid();
@@ -80,6 +82,14 @@ public class Setting extends Fragment {
                     int messageid = databasehelper.getsettingdata().get(0).getMsgid();
                     Boolean success = databasehelper.updatesettingdata(messageid,0);
                 }
+            }
+        });
+        contactus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:"+"academyforbrilliance99@gmail.com"));
+                    intent.putExtra(Intent.EXTRA_SUBJECT,"Surakcha Location sharing");
+                    startActivity(intent);
             }
         });
     }

@@ -34,7 +34,7 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("profile");
+        ((Main_launcer) getActivity()).getSupportActionBar().setTitle("profile");
         dp = view.findViewById(R.id.profiledp);
         name = view.findViewById(R.id.name);
         email = view.findViewById(R.id.email);

@@ -20,6 +20,6 @@ public class Share extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Share");
+        ((Main_launcer) getActivity()).getSupportActionBar().setTitle("Share");
     }
 }

@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -34,12 +37,14 @@ public class DashboardFragment extends Fragment {
     Handler handler = new Handler();
     Runnable runnable;
     int delay = 10000;
-    TextView lat,lon,add;
+    TextView lat,lon,add,textdata;
     Button send;
-    ImageView map;
+    ImageView map,locationicon;
+    CardView locationcard;
     databasehelper databasehelper;
-    MainActivity mActivity = new MainActivity();
+
     String messagedata = "";
+    Animation top,bottom;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,12 +54,24 @@ public class DashboardFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Dashboard");
+        ((Main_launcer) getActivity()).getSupportActionBar().setTitle("Dashboard");
+        locationicon = view.findViewById(R.id.locationicon);
+        locationcard = view.findViewById(R.id.location);
+        textdata = view.findViewById(R.id.textdata);
+
+        top = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),R.anim.topanimation);
+        bottom = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),R.anim.bottomanimation);
+
+        locationicon.setAnimation(top);
+        locationcard.setAnimation(bottom);
+        textdata.setAnimation(top);
+        
         lat = view.findViewById(R.id.latitude);
         lon = view.findViewById(R.id.longitude);
         add = view.findViewById(R.id.address);
         send = view.findViewById(R.id.send);
         map = view.findViewById(R.id.map);
+        send.setAnimation(bottom);
         databasehelper = new databasehelper(getActivity().getApplicationContext(),"Surakcha.db");
         sendmethod();
         mapmethod();

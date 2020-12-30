@@ -51,7 +51,7 @@ public class SavedMessage extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Saved message");
+        ((Main_launcer) getActivity()).getSupportActionBar().setTitle("Saved message");
         create = view.findViewById(R.id.createmsg);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.messagedata);

@@ -31,7 +31,7 @@ public class SavedContact extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Saved contact");
+        ((Main_launcer) getActivity()).getSupportActionBar().setTitle("Saved contact");
         recyclerView = (RecyclerView) view.findViewById(R.id.messagedata);
         databasehelper = new databasehelper(getActivity().getApplicationContext(),"Surakcha.db");
         List<contactmodel> data = databasehelper.getsavedcontactdata();
