@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ public class SavedContact extends Fragment {
     databasehelper databasehelper;
     RecyclerView recyclerView;
     savedcontactadapter savedcontactadapter;
+    ImageButton create;
 
     @Nullable
     @Override
@@ -31,7 +33,8 @@ public class SavedContact extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        ((Main_launcer) getActivity()).getSupportActionBar().setTitle("Saved Contact");
+        ((Main_launcer) getActivity()).getSupportActionBar().setTitle("Saved Contacts");
+        create = view.findViewById(R.id.createmsg);
         recyclerView = (RecyclerView) view.findViewById(R.id.messagedata);
         databasehelper = new databasehelper(getActivity().getApplicationContext(),"Surakcha.db");
         List<contactmodel> data = databasehelper.getsavedcontactdata();
@@ -41,6 +44,19 @@ public class SavedContact extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         recyclerView.setAdapter(savedcontactadapter);
         tochmethod();
+        ceatebutton();
+    }
+
+    private void ceatebutton() {
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction t = getFragmentManager().beginTransaction();
+                Fragment cFrag = new ContactFragments();
+                t.replace(R.id.container, cFrag);
+                t.commit();
+            }
+        });
     }
 
     private void tochmethod(){

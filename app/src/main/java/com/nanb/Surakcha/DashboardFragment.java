@@ -44,7 +44,6 @@ public class DashboardFragment extends Fragment {
     databasehelper databasehelper;
 
     String messagedata = "";
-    Animation top,bottom;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,13 +57,6 @@ public class DashboardFragment extends Fragment {
         locationicon = view.findViewById(R.id.locationicon);
         locationcard = view.findViewById(R.id.location);
         textdata = view.findViewById(R.id.textdata);
-
-        top = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),R.anim.topanimation);
-        bottom = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),R.anim.bottomanimation);
-
-        locationicon.setAnimation(top);
-        locationcard.setAnimation(bottom);
-        textdata.setAnimation(top);
 
         lat = view.findViewById(R.id.latitude);
         lon = view.findViewById(R.id.longitude);

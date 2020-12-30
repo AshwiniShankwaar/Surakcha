@@ -100,8 +100,8 @@ public class ContactFragments extends Fragment {
 
     private void sendtohome() {
         FragmentTransaction t = getFragmentManager().beginTransaction();
-        Fragment setting = new Setting();
-        t.replace(R.id.container, setting);
+        Fragment savedcontact = new SavedContact();
+        t.replace(R.id.container, savedcontact);
         t.commit();
     }
 
