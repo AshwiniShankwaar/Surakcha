@@ -17,14 +17,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/item"
             android:background="@drawable/msg_recycler_view_item_background"
-            android:padding="10dp">
+            android:padding="5dp">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
                 android:id="@+id/title"
-                android:paddingTop="3dp"
-                android:paddingLeft="3dp"
+                android:paddingTop="2dp"
+                android:paddingLeft="5dp"
                 android:paddingRight="3dp"
                 android:paddingBottom="1dp"/>
             <TextView
@@ -32,8 +32,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/message"
                 android:paddingTop="1dp"
-                android:paddingBottom="3dp"
-                android:paddingLeft="3dp"
+                android:paddingBottom="2dp"
+                android:paddingLeft="5dp"
                 android:paddingRight="3dp"
                 />
         </LinearLayout>

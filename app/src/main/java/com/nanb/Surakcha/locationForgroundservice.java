@@ -50,6 +50,9 @@ public class locationForgroundservice extends Service {
                     fos = openFileOutput(fileName, MODE_PRIVATE);
                     fos.write(Adrs.getBytes());
                     fos.close();
+                    // Add code to upload location data in the firebase database
+
+                    uploaddatatotheserver();
                   //  logfileCreate.appendLog("File created" + getFilesDir()+"/"+fileName,getApplicationContext());
                     //display file saved message
                     //Toast.makeText(getBaseContext(), "File saved successfully!"+ " "+getFilesDir(),Toast.LENGTH_SHORT).show();
@@ -59,6 +62,10 @@ public class locationForgroundservice extends Service {
             }
         }
     };
+
+    private void uploaddatatotheserver() {
+
+    }
 
     private String getCompleteAddressString(double latitude, double longitude) {
         String strAdd = "";

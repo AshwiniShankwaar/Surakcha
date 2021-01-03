@@ -1,6 +1,7 @@
 package com.nanb.Surakcha;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +52,8 @@ public class ProfileFragment extends Fragment {
         if(databasehelper.CheckifTableIsEmptyOrNot(databasehelper.PROFILETABLE)){
             setprofiledata();
         }else{
-            Toast.makeText(getActivity().getApplicationContext(),"no data",Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getActivity().getApplicationContext(),"no data",Toast.LENGTH_SHORT).show();
+            Log.d("profiledata","no Data");
         }
         update.setOnClickListener(new View.OnClickListener(){
             @Override

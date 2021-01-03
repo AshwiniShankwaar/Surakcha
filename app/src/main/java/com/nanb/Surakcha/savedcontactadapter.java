@@ -35,13 +35,14 @@ public class savedcontactadapter extends RecyclerView.Adapter<savedcontactadapte
     @Override
     public void onBindViewHolder(@NonNull savedcontactadapter.ViewHolder holder, int position) {
         //Toast.makeText(context,String.valueOf(contactmodelList.size()), Toast.LENGTH_SHORT).show();
-        if(holder.getAdapterPosition() > lastpostion){
+        /*if(holder.getAdapterPosition() > lastpostion){
             Animation animation = AnimationUtils.loadAnimation(context,R.anim.slideinrow);
             holder.itemView.startAnimation(animation);
-            holder.name.setText(contactmodelList.get(position).getName());
-            holder.phonenbr.setText(contactmodelList.get(position).getPhoneNumber());
-            lastpostion = holder.getAdapterPosition();
-        }
+
+        }*/
+        holder.name.setText(contactmodelList.get(position).getName());
+        holder.phonenbr.setText(contactmodelList.get(position).getPhoneNumber());
+        lastpostion = holder.getAdapterPosition();
     }
 
     @Override

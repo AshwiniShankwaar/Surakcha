@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,8 @@ public class editprofile extends Fragment {
       if(databasehelper.CheckifTableIsEmptyOrNot(databasehelper.PROFILETABLE)){
           setprofiledata();
       }else{
-          Toast.makeText(getActivity().getApplicationContext(),"no data",Toast.LENGTH_SHORT).show();
+          //Toast.makeText(getActivity().getApplicationContext(),"no data",Toast.LENGTH_SHORT).show();
+          Log.d("profiledata","no Data");
       }
         dpmethod();
        savemethod();
@@ -103,6 +105,8 @@ public class editprofile extends Fragment {
                 if(nameStr.isEmpty() || emailStr.isEmpty() || phonestr.isEmpty() || Permanentaddress.isEmpty() || currentAddress.isEmpty()){
                     Toast.makeText(getActivity().getApplicationContext(),"Make sure every feild is filled", Toast.LENGTH_SHORT).show();
                 }else{
+
+                    //Add code to upload profile data to the server and fetch tyhe data from the server to save in the database
 
                     String success = databasehelper.addprofile(nameStr,emailStr,phonestr,Permanentaddress,currentAddress);
                     Toast.makeText(getActivity().getApplicationContext(),success, Toast.LENGTH_SHORT).show();

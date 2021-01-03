@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/aclonica"
         android:layout_below="@+id/Appname"
-        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginRight="10dp"
         android:textColor="@color/black"
         android:textAlignment="center"
