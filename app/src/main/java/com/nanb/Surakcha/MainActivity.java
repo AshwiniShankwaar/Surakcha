@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity{
                     public void run() {
                         Intent i = new Intent(getApplicationContext(),Main_launcer.class);
                         startActivity(i);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         finish();
                     }
                 },SPLASH_SCREEN);
