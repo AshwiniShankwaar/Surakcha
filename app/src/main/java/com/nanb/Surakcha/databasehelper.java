@@ -66,6 +66,17 @@ public class databasehelper extends SQLiteOpenHelper {
             return "Saved";
         }
     }
+    public boolean update(String s, String s1,int msgid) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String Query = "UPDATE "+TABLE_NAME+" SET "+TITLE+" = \""+s+"\", "+MESSAGE+" = \""+s1+"\" WHERE ID = "+msgid;
+        Log.d("Query",Query);
+        Cursor cursor = db.rawQuery(Query,null);
+        if(cursor.moveToNext()){
+            return false;
+        }else{
+            return true;
+        }
+    }
     public boolean updatesettingdata(int message_id,int location_service){
         SQLiteDatabase db = this.getWritableDatabase();
         String Query = "UPDATE "+ SETTINGTABLE+" SET "+MESSAGE_ID+" = "+message_id+", "+LOCATIONSERVICE+"="+location_service+" WHERE ID = 1";

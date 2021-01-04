@@ -146,6 +146,7 @@ public class DashboardFragment extends Fragment {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 List<contactmodel> data = databasehelper.getsavedcontactdata();
                if(data.size() <= 0){
                    Toast.makeText(getActivity().getApplicationContext(),"Select contact to send message.",Toast.LENGTH_SHORT).show();
@@ -155,10 +156,24 @@ public class DashboardFragment extends Fragment {
                    //Toast.makeText(getActivity().getApplicationContext(),databasehelper.getselectedmessage(messageid),Toast.LENGTH_SHORT).show();
                     messagedata = databasehelper.getselectedmessage(messageid);
                    //Toast.makeText(getActivity().getApplicationContext(),messagedata,Toast.LENGTH_SHORT).show();
+                   String success = "";
                    for(contactmodel phnnumber:data){
-                       SmsManager smsManager = SmsManager.getDefault();
-                       ArrayList<String> parts = smsManager.divideMessage(messagedata+"\n\nLatitude: "+latitudedata+"\nLongitude: "+longitudedata+"\nAddress: "+AddressData+"\nGoogle map Link: "+Locationhyperlink);
-                       smsManager.sendMultipartTextMessage(phnnumber.getPhoneNumber(),null,parts,null,null);
+                       try{
+                           SmsManager smsManager = SmsManager.getDefault();
+                           ArrayList<String> parts = smsManager.divideMessage(messagedata+"\n\nLatitude: "+latitudedata+"\nLongitude: "+longitudedata+"\nLast Location: "+AddressData+"\n\n\nGoogle map Link: "+Locationhyperlink);
+                           smsManager.sendMultipartTextMessage(phnnumber.getPhoneNumber(),null,parts,null,null);
+                           success = "pass";
+                       }catch (Exception e){
+                           success = "failed";
+                           e.printStackTrace();
+
+                       }
+                   }if(success.matches("pass")){
+                       Toast.makeText(getActivity().getApplicationContext(), "SMS Sent!",
+                               Toast.LENGTH_LONG).show();
+                   }else{
+                       Toast.makeText(getActivity().getApplicationContext(), "SMS failed, please try again later!",
+                               Toast.LENGTH_LONG).show();
                    }
                }
             }

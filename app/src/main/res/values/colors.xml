@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lightpink">#FA9EE5</color>
     <color name="blacishpink">#FAF8FA</color>
-    <color name="red">#FF4C4C</color>
+    <color name="red">#E74C3C</color>
+    <color name="green">#82E0AA</color>
 </resources>

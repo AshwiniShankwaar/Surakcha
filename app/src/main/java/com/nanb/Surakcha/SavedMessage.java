@@ -70,35 +70,74 @@ public class SavedMessage extends Fragment {
 
     }
 
-    private void showsavedmesssage(View view) {
-       /* Dialog dialog = new Dialog(view.getContext());
-        dialog.setContentView(R.layout.savedmessage_dilog);
+    private void showsavedmesssage(int msgid) {
+       //int msgid = databasehelper.getsettingdata().get(postiondata).getMsgid();
+        List<msgmodel> msgdata = databasehelper.getsellectedmsgdata(msgid);
+        Dialog dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.alert_dialog);
 
-        TextView title = dialog.findViewById(R.id.title);
-        TextView msg = dialog.findViewById(R.id.message);
+        EditText title = dialog.findViewById(R.id.title);
+        title.setText(msgdata.get(0).getTitle());
+        EditText msg = dialog.findViewById(R.id.message);
+        msg.setText(msgdata.get(0).getMsg());
+        save = dialog.findViewById(R.id.save);
         Button cancel = dialog.findViewById(R.id.cancel);
+        textcount = dialog.findViewById(R.id.textcount);
+        msg.addTextChangedListener(mTextEditorWatcher);
+
         cancel.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 dialog.cancel();
-                // recreatefag();
+                recreatefag();
             }
         });
-        List<msgmodel> msgdata = databasehelper.getmsgdata();
-        title.setText(msgdata.get(0).getTitle());
-        msg.setText(msgdata.get(0).getMsg());
-        dialog.show();*/
-        int msgid = databasehelper.getsettingdata().get(0).getMsgid();
-        List<msgmodel> msgdata = databasehelper.getsellectedmsgdata(msgid);
-        new AlertDialog.Builder(getContext(),R.style.CustomAlertDailog)
-                .setTitle(msgdata.get(0).getTitle())
-                .setMessage(msgdata.get(0).getMsg())
-                .setNegativeButton("Cancel",null)
-                .show();
+        save.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                String titledata = title.getText().toString();
+                String msgdata = msg.getText().toString();
+                //Toast.makeText(getActivity().getApplicationContext(),titledata+" "+msgdata,Toast.LENGTH_SHORT).show();
+                try{
+                    if(titledata.isEmpty()){
+                        Toast.makeText(getActivity().getApplicationContext(),"Please write a message Title before saving",Toast.LENGTH_SHORT).show();
+                    }else if(msgdata.isEmpty()){
+                        Toast.makeText(getActivity().getApplicationContext(),"Please write your message before saving",Toast.LENGTH_SHORT).show();
+                    }else if(titledata.isEmpty() && msgdata.isEmpty()){
+                        Toast.makeText(getActivity().getApplicationContext(),"Please write your message and message title before saving",Toast.LENGTH_SHORT).show();
+                    }else{
+                        //msgmodel msgmodel = new msgmodel(-1,titledata,msgdata);
+                        databasehelperupdatemethod(titledata,msgdata,msgid);
+                    }
+                }catch(Exception ex){
+                    Toast.makeText(getActivity().getApplicationContext(),"Error while saving message",Toast.LENGTH_SHORT).show();
+                }
+
+
+                dialog.dismiss();
+                adapter.notifyDataSetChanged();
+                recreatefag();
+            }
+        });
+
+        dialog.show();
+
+
+    }
+
+    private void databasehelperupdatemethod(String titledata, String msgdata, int msgid) {
+        boolean success = databasehelper.update(titledata,msgdata,msgid);
+        if(success){
+            Toast.makeText(getActivity().getApplicationContext(),"Message edited successfully",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(getActivity().getApplicationContext(),"Error occurs will saving",Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void tochmethod(){
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT){
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT|ItemTouchHelper.LEFT){
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -106,22 +145,34 @@ public class SavedMessage extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                boolean result = adapter.deletedata(viewHolder.getAdapterPosition());
-                if(result){
-                   // adapter.notifyDataSetChanged();
-                    recreatefag();
-                    Toast.makeText(getActivity().getApplicationContext(),"Deleted successfully...",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(getActivity().getApplicationContext(),"Error while deleting...",Toast.LENGTH_SHORT).show();
-                }
+               switch (direction){
+                   case ItemTouchHelper.RIGHT:
+                       boolean result = adapter.deletedata(viewHolder.getAdapterPosition());
+                       if(result){
+                           // adapter.notifyDataSetChanged();
+                           recreatefag();
+                           Toast.makeText(getActivity().getApplicationContext(),"Deleted successfully...",Toast.LENGTH_SHORT).show();
+                       }else{
+                           Toast.makeText(getActivity().getApplicationContext(),"Error while deleting...",Toast.LENGTH_SHORT).show();
+                       }
+                       break;
+                   case ItemTouchHelper.LEFT:
+                       int msgid = adapter.messageid(viewHolder.getAdapterPosition());
+                       //Toast.makeText(getActivity().getApplicationContext(),String.valueOf(msgid),Toast.LENGTH_SHORT).show();
+                       showsavedmesssage(msgid);
+                       break;
+
+               }
 
             }
 
             @Override
             public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
                 new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                        .addBackgroundColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.red))
-                        .addActionIcon(R.drawable.delete)
+                        .addSwipeRightBackgroundColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.red))
+                        .addSwipeLeftBackgroundColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.green))
+                        .addSwipeRightActionIcon(R.drawable.delete)
+                        .addSwipeLeftActionIcon(R.drawable.edit)
                         .create()
                         .decorate();
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);

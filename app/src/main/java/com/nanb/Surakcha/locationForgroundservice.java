@@ -8,6 +8,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Build;
@@ -106,7 +107,8 @@ public class locationForgroundservice extends Service {
         Intent resultIntent = new Intent();
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), channel_id);
-        builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setSmallIcon(R.drawable.location);
+        builder.setLargeIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.bk));
         builder.setContentTitle("Surakcha Location service");
         builder.setDefaults(NotificationCompat.DEFAULT_ALL);
         builder.setContentText("Running...");

@@ -100,4 +100,10 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         }
     }
 
+    public int messageid(int position){
+        msgmodel msgmodel = msgdata.get(position);
+        int msgid = msgmodel.getId();
+        return msgid;
+    }
+
 }
