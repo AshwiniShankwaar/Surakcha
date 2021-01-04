@@ -105,10 +105,10 @@ public class Main_launcer extends AppCompatActivity implements DrawerAdapter.OnI
 
     private DrawerItem createItemfor(int position){
         return new SimpleItem(screenIcons[position],screenTitles[position])
-                .withIconTint(color(R.color.lightpink))
+                .withIconTint(color(R.color.purple_500))
                 .withTextTint(color(R.color.black))
-                .withSelectedIconTint(color(R.color.lightpink))
-                .withSelectedTextTint(color(R.color.lightpink));
+                .withSelectedIconTint(color(R.color.purple_500))
+                .withSelectedTextTint(color(R.color.purple_500));
     }
 
     private int color(@ColorRes int res){

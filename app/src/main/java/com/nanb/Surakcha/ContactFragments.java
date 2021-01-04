@@ -45,6 +45,13 @@ public class ContactFragments extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         ((Main_launcer) getActivity()).getSupportActionBar().setTitle("Select contact");
         save = view.findViewById(R.id.save);
+        cancel = view.findViewById(R.id.cancel);
+        cancel.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                sendtohome();
+            }
+        });
         recyclerView = view.findViewById(R.id.contactlist);
         searchView = view.findViewById(R.id.searchview);
         get();
